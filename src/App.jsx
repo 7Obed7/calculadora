@@ -1,14 +1,15 @@
-import { useState } from "react";
+// import { useState } from "react";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <div className="calculator-grid">
         <div className="output">
-          <div className="previous-operand"></div>
-          <div className="current-operand"></div>
+          <div className="previous-operand"> 52624258</div>
+          <div className="current-operand">555555</div>
         </div>
-        <button>AC</button>
+        <button className="span-two">AC</button>
         <button>DEL</button>
         <button>/</button>
         <button>7</button>
@@ -25,7 +26,7 @@ function App() {
         <button>-</button>
         <button>.</button>
         <button>0</button>
-        <button>=</button>
+        <button className="span-two"> =</button>
       </div>
     </div>
   );
