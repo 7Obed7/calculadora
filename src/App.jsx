@@ -1,4 +1,3 @@
-/* eslint-disable default-case */
 import "./App.css";
 import React, { useState } from "react";
 
@@ -12,11 +11,16 @@ function App() {
     setNumber1("");
     setNumber2("");
     setCurrentOperation("");
-    setResult("");
+    setResult(0);
   }
-  function clean() {
-    setNumber1("");
-  }
+
+  const deleteNumber = () => {
+    if (currentOperation === "") {
+      setNumber1(number1.toString().slice(0, -1));
+    } else {
+      setNumber2(number2.toString().slice(0, -1));
+    }
+  };
 
   function clickNumber(val) {
     if (currentOperation === "") {
@@ -44,6 +48,8 @@ function App() {
       case "/":
         setResult(Number(number1) / Number(number2));
         break;
+      default:
+        break;
     }
   }
 
@@ -62,7 +68,7 @@ function App() {
           AC
         </button>
 
-        <button onClick={clean}>DEL</button>
+        <button onClick={deleteNumber}>DEL</button>
         <button
           onClick={() => {
             clickOperation("/");
