@@ -8,6 +8,33 @@ body {
     background: linear-gradient(to right, #e5fcc8, #f1fcc8, #c8f4fc);
 }
 
+.col {
+    justify-content: center;
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.historial {
+    justify-content: center;
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.historiala {
+    justify-content: center;
+    height: 50vh;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .App {
     height: 100vh;
     width: 100%;

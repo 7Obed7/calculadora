@@ -7,6 +7,9 @@ function App() {
   const [currentOperation, setCurrentOperation] = useState("");
   const [result, setResult] = useState(0);
 
+  let initialState = JSON.parse(localStorage.getItem("historial")) || [];
+  const [historial, sethistorial] = useState(initialState);
+
   function allClear() {
     setNumber1("");
     setNumber2("");
@@ -34,23 +37,37 @@ function App() {
     setCurrentOperation(val);
   }
 
-  function getResult() {
+  function getResult(val) {
+    let resultado = 0;
     switch (currentOperation) {
       case "+":
-        setResult(Number(number1) + Number(number2));
+        resultado = Number(number1) + Number(number2);
         break;
       case "-":
-        setResult(Number(number1) - Number(number2));
+        resultado = Number(number1) - Number(number2);
         break;
       case "*":
-        setResult(Number(number1) * Number(number2));
+        resultado = Number(number1) * Number(number2);
         break;
       case "/":
-        setResult(Number(number1) / Number(number2));
+        resultado = Number(number1) / Number(number2);
         break;
       default:
         break;
     }
+
+    setResult(resultado);
+    const coleccion = {
+      n1: number1,
+      ope: currentOperation,
+      n2: number2,
+      res: resultado,
+    };
+    console.log({ resultado });
+    console.log({ coleccion });
+    const nuevoArray = [...historial, coleccion];
+    sethistorial([...nuevoArray]);
+    localStorage.setItem("historial", JSON.stringify(nuevoArray));
   }
 
   return (
@@ -182,8 +199,36 @@ function App() {
           =
         </button>
       </div>
+      {/* BOton para guardar */}
+      <span className="col">
+        <h3>Historial</h3>
+        <br />
+        <br />
+        <br />
+        {historial.length === 0 && "Áun no hay Historial"}
+        {historial.length !== 0 && (
+          <ol>
+            <br />
+            <br />
+            <br />
+            {historial.map((item, index) => {
+              return (
+                <li key={index}>
+                  {item.n1}
+                  {item.ope}
+                  {item.n2}={item.res}
+                </li>
+              );
+            })}
+          </ol>
+        )}
+      </span>
     </div>
   );
 }
 
 export default App;
+
+// solicitudes
+// verbos: get {solicita informacion}, post {Agregar informacion},
+// put {actualizar informacion; }, delete { eliminar informacion }, patch{modificar estructura; }
